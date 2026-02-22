@@ -482,5 +482,38 @@
 <div id="img200" class="lightbox"><a href="#emblems" class="close-btn">&times;</a><img src="images/EN/emblems/photo1 (71).jpg"></div>
 <div id="img201" class="lightbox"><a href="#emblems" class="close-btn">&times;</a><img src="images/EN/emblems/photo1 (72).jpg"></div>
 <div id="img202" class="lightbox"><a href="#emblems" class="close-btn">&times;</a><img src="images/EN/emblems/photo1 (73).jpg"></div>
+
+<script>
+  // Get all lightbox elements
+  const lightboxes = Array.from(document.querySelectorAll('.lightbox'));
+  
+  // Helper: extract the image number from the id, e.g., "img12" -> 12
+  const getImageIndex = (id) => parseInt(id.replace('img', ''), 10);
+
+  // Listen for key presses
+  document.addEventListener('keydown', (e) => {
+    const current = document.querySelector('.lightbox:target');
+    if (!current) return; // No lightbox open
+
+    let currentIndex = getImageIndex(current.id);
+    let nextIndex;
+
+    if (e.key === 'ArrowRight') {
+      // Go to next image
+      nextIndex = currentIndex + 1;
+      if (nextIndex > lightboxes.length) nextIndex = 1; // wrap around
+    } else if (e.key === 'ArrowLeft') {
+      // Go to previous image
+      nextIndex = currentIndex - 1;
+      if (nextIndex < 1) nextIndex = lightboxes.length; // wrap around
+    } else {
+      return; // Ignore other keys
+    }
+
+    // Navigate to the next/previous image using hash
+    window.location.hash = `img${nextIndex}`;
+  });
+</script>
+
 </body>
 </html>
