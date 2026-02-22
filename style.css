@@ -1,0 +1,167 @@
+/* =========================
+   RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================
+   ROOT VARIABLES
+========================= */
+:root {
+    --bg: #f5f6f8;
+    --card-bg: #ffffff;
+    --text: #1a1a1a;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --accent: #2f6fed;
+}
+
+/* =========================
+   DARK MODE (AUTO)
+========================= */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0f1115;
+        --card-bg: #161a22;
+        --text: #e6e6e6;
+        --muted: #9aa3af;
+        --border: #2a2f3a;
+        --accent: #4c8dff;
+    }
+}
+
+/* =========================
+   BODY
+========================= */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* =========================
+   FADE IN ANIMATION
+========================= */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   HEADER
+========================= */
+header {
+    padding: 2.5rem 1rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    background: var(--card-bg);
+}
+
+header h1 {
+    font-weight: 600;
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+.container {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+}
+
+/* =========================
+   HOMEPAGE GRID (ARCHIVE INDEX)
+========================= */
+.category-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+}
+
+.category-list li a {
+    display: block;
+    padding: 1.2rem;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.category-list li a:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+}
+
+/* =========================
+   BACK LINK
+========================= */
+.back-link {
+    display: inline-block;
+    margin-bottom: 2.5rem;
+    text-decoration: none;
+    color: var(--accent);
+    font-size: 0.9rem;
+}
+
+/* =========================
+   SUBCATEGORY SECTION
+========================= */
+.subcategory {
+    margin-bottom: 4rem;
+}
+
+.subcategory h2 {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 1.5rem;
+    color: var(--muted);
+    border-left: 3px solid var(--accent);
+    padding-left: 10px;
+}
+
+/* =========================
+   GALLERY GRID
+========================= */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+}
+
+/* =========================
+   IMAGE CARDS
+========================= */
+.gallery img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
