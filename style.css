@@ -230,3 +230,34 @@ a {
     from { opacity: 0; }
     to { opacity: 1; }
 }
+
+/* =========================
+   Index Page Layout
+========================= */
+
+.index-container {
+    max-width: 600px;
+    margin: 4rem auto;
+    text-align: center;
+}
+
+.language-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+}
+
+.language-list li {
+    margin: 0.8rem 0;
+}
+
+.language-list a {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--accent);
+    transition: opacity 0.2s ease;
+}
+
+.language-list a:hover {
+    opacity: 0.7;
+}
