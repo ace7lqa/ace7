@@ -1,86 +1,177 @@
 /* =========================
-   Button Improvements
+   Root Theme
 ========================= */
+:root {
+    --bg: #f4f6f9;
+    --card-bg: #ffffff;
+    --text: #1c1e21;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --accent: #2f6fed;
+}
 
-/* Sidebar Links */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0f1115;
+        --card-bg: #161a22;
+        --text: #e6e6e6;
+        --muted: #9aa3af;
+        --border: #2a2f3a;
+        --accent: #4c8dff;
+    }
+}
+
+/* =========================
+   Base
+========================= */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    animation: fadeIn 0.6s ease-out;
+}
+
+header {
+    text-align: center;
+    padding: 2rem 1rem 1rem;
+}
+
+h1 {
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+/* =========================
+   Layout
+========================= */
+.container {
+    display: flex;
+    align-items: flex-start;
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem 3rem;
+}
+
+.main-content {
+    flex: 1;
+}
+
+/* =========================
+   Sidebar (Fixed Sticky)
+========================= */
+.sidebar {
+    position: sticky;
+    top: 120px;
+    flex: 0 0 240px;
+
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.2rem;
+
+    box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+    transition: box-shadow 0.3s ease;
+}
+
+.sidebar:hover {
+    box-shadow: 0 14px 36px rgba(0,0,0,0.1);
+}
+
+.sidebar h3 {
+    margin-top: 0;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-bottom: 1rem;
+}
+
 .sidebar a {
     display: block;
-    padding: 0.65rem 1rem;
-    border-radius: 12px;
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
     color: var(--text);
-    font-size: 0.95rem;
-    font-weight: 500;
-    background: transparent;
-    transition: all 0.25s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.sidebar a::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--accent);
-    opacity: 0;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    border-radius: 12px;
-    z-index: 0;
-}
-
-.sidebar a:hover::after {
-    transform: scaleX(1);
-    opacity: 0.15;
+    font-size: 0.9rem;
+    transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .sidebar a:hover {
-    transform: translateX(3px);
-    color: var(--text);
-    z-index: 1;
+    background: var(--border);
+    transform: translateX(4px);
 }
 
-/* Language List Buttons */
-.language-list a {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--accent);
-    padding: 0.55rem 1.1rem;
-    border-radius: 10px;
-    display: inline-block;
-    transition: all 0.25s ease, box-shadow 0.25s ease;
-    position: relative;
+/* =========================
+   Subcategories
+========================= */
+.subcategory {
+    margin-bottom: 3rem;
 }
 
-.language-list a:hover {
-    opacity: 1;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-    background: var(--accent);
-    color: #fff;
+.subcategory h2 {
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.4rem;
 }
 
-/* Rickroll Button */
-.rickroll-btn {
-    font-size: 0.75rem;
-    opacity: 0.35;
-    color: var(--muted);
-    padding: 0.4rem 0.8rem;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    transition: all 0.3s ease, box-shadow 0.25s ease;
-    display: inline-block;
+/* =========================
+   Gallery (Bigger Images)
+========================= */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
 }
 
-.rickroll-btn:hover {
-    opacity: 1;
-    transform: scale(1.2) translateY(-1px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-    background: var(--accent);
-    color: #fff;
+.gallery img {
+    width: 100%;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Lightbox Close Button (Polished) */
+.gallery img:hover {
+    transform: scale(1.04);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+}
+
+/* =========================
+   Lightbox
+========================= */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.lightbox:target {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: 92%;
+    max-height: 92%;
+    border-radius: 12px;
+}
+
+/* Improved Close Button */
 .lightbox .close-btn {
     position: absolute;
     top: 35px;
@@ -90,7 +181,7 @@
     height: 54px;
 
     background: rgba(255,255,255,0.2);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(6px);
     border-radius: 50%;
 
     display: flex;
@@ -102,11 +193,71 @@
     color: white;
     text-decoration: none;
 
-    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
-    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .lightbox .close-btn:hover {
-    background: rgba(255,255,255,0.35);
-    transform: scale(1.15) rotate(10deg);
+    background: rgba(255,255,255,0.4);
+    transform: scale(1.12);
+}
+
+/* =========================
+   Rickroll Easter Egg
+========================= */
+.rickroll-footer {
+    text-align: center;
+    padding: 3rem 0 1rem;
+}
+
+.rickroll-btn {
+    font-size: 0.7rem;
+    opacity: 0.35;
+    color: var(--muted);
+    transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.rickroll-btn:hover {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+/* =========================
+   Animation
+========================= */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* =========================
+   Index Page Layout
+========================= */
+
+.index-container {
+    max-width: 600px;
+    margin: 4rem auto;
+    text-align: center;
+}
+
+.language-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+}
+
+.language-list li {
+    margin: 0.8rem 0;
+}
+
+.language-list a {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--accent);
+    transition: opacity 0.2s ease;
+}
+
+.language-list a:hover {
+    opacity: 0.7;
 }
