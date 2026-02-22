@@ -1,10 +1,10 @@
 /* =========================
-   Root variables
+   Root Theme
 ========================= */
 :root {
-    --bg: #f5f6f8;
-    --card-bg: #fff;
-    --text: #1a1a1a;
+    --bg: #f4f6f9;
+    --card-bg: #ffffff;
+    --text: #1c1e21;
     --muted: #6b7280;
     --border: #e5e7eb;
     --accent: #2f6fed;
@@ -22,72 +22,47 @@
 }
 
 /* =========================
-   Global Styles
+   Base
 ========================= */
+html {
+    scroll-behavior: smooth;
+}
+
 body {
+    margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background: var(--bg);
     color: var(--text);
-    margin: 0;
     line-height: 1.6;
     animation: fadeIn 0.6s ease-out;
 }
 
 header {
     text-align: center;
-    padding: 1rem;
+    padding: 2rem 1rem 1rem;
 }
 
-a.back-link {
-    display: inline-block;
-    margin-bottom: 1rem;
-    text-decoration: none;
+h1 {
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+a {
     color: var(--accent);
+    text-decoration: none;
 }
 
 /* =========================
-   Container + Layout
+   Layout
 ========================= */
-body {
-    display: flex;
-    flex-direction: row;
-}
-
 .container {
     display: flex;
-    gap: 2rem;
-    max-width: 1100px;
+    align-items: flex-start;
+    gap: 2.5rem;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1rem 2rem;
-}
-
-.sidebar {
-    position: sticky;
-    top: 1rem;
-    flex: 0 0 220px;
-    background: var(--card-bg);
-    padding: 1rem;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-    height: fit-content;
-}
-
-.sidebar h3 {
-    margin-top: 0;
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-}
-
-.sidebar a {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: var(--accent);
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.sidebar a:hover {
-    color: var(--text);
+    padding: 0 1.5rem 3rem;
 }
 
 .main-content {
@@ -95,109 +70,163 @@ body {
 }
 
 /* =========================
-   Subcategories
+   Sidebar (Fixed Sticky)
 ========================= */
-.subcategory {
-    margin-bottom: 2.5rem;
+.sidebar {
+    position: sticky;
+    top: 120px;
+    flex: 0 0 240px;
+
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.2rem;
+
+    box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+    transition: box-shadow 0.3s ease;
 }
 
-.subcategory h2 {
+.sidebar:hover {
+    box-shadow: 0 14px 36px rgba(0,0,0,0.1);
+}
+
+.sidebar h3 {
+    margin-top: 0;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
     margin-bottom: 1rem;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 0.3rem;
+}
+
+.sidebar a {
+    display: block;
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 0.9rem;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.sidebar a:hover {
+    background: var(--border);
+    transform: translateX(4px);
 }
 
 /* =========================
-   Gallery + Thumbnails
+   Subcategories
+========================= */
+.subcategory {
+    margin-bottom: 3rem;
+}
+
+.subcategory h2 {
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.4rem;
+}
+
+/* =========================
+   Gallery (Bigger Images)
 ========================= */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
 }
 
 .gallery img {
     width: 100%;
-    height: auto;
+    border-radius: 12px;
     cursor: pointer;
-    border-radius: 6px;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .gallery img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transform: scale(1.04);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.2);
 }
 
 /* =========================
-   Lightbox Overlay
+   Lightbox
 ========================= */
 .lightbox {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0,0,0,0.85);
+    inset: 0;
+    background: rgba(0,0,0,0.88);
     justify-content: center;
     align-items: center;
     z-index: 9999;
-}
-
-.lightbox img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 6px;
 }
 
 .lightbox:target {
     display: flex;
 }
 
+.lightbox img {
+    max-width: 92%;
+    max-height: 92%;
+    border-radius: 12px;
+}
+
+/* Improved Close Button */
 .lightbox .close-btn {
     position: absolute;
-    top: 20px;
-    right: 30px;
-    color: #fff;
-    font-size: 2rem;
+    top: 35px;
+    right: 45px;
+
+    width: 54px;
+    height: 54px;
+
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(6px);
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.6rem;
     font-weight: bold;
+    color: white;
     text-decoration: none;
+
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.lightbox .close-btn:hover {
+    background: rgba(255,255,255,0.4);
+    transform: scale(1.12);
 }
 
 /* =========================
-   Smooth Scrolling
-========================= */
-html {
-    scroll-behavior: smooth;
-}
-
-/* =========================
-   Fade-in Animation
-========================= */
-@keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-
-/* =========================
-   Rickroll Button
+   Rickroll Easter Egg
 ========================= */
 .rickroll-footer {
     text-align: center;
-    padding: 2rem 0 1rem;
+    padding: 3rem 0 1rem;
 }
 
 .rickroll-btn {
     font-size: 0.7rem;
-    opacity: 0.4;
-    text-decoration: none;
+    opacity: 0.35;
     color: var(--muted);
-    transition: opacity 0.3s, transform 0.2s;
+    transition: opacity 0.3s ease, transform 0.2s ease;
 }
 
 .rickroll-btn:hover {
     opacity: 1;
     transform: scale(1.2);
-    cursor: pointer;
+}
+
+/* =========================
+   Animation
+========================= */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
